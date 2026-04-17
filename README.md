@@ -5,7 +5,8 @@
 4) run command "npm i" -> to import all dependencies for React
 5) run command "npm run dev" to host website on localhost:3000
 
-Thank you so much for your time!
+-Work in progress to run phpAdmin on docker 
+-MySQL in docker 
 
 
 
