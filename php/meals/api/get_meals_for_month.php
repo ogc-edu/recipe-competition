@@ -9,7 +9,8 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, Cache-Control
 
 session_start();
 
-$conn = new mysqli("localhost", "root", "", "recipe_database");
+// Use "db" (the service name), NOT "localhost"
+$conn = new mysqli("db", "root", "", "recipe_database");
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(['message' => 'Failed to connect to database: ' . $conn->connect_error]);

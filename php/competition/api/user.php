@@ -11,7 +11,8 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, Cache-Control
 
 
 session_start();
-$conn = new mysqli("localhost", "root", "", "recipe_database");
+// Use "db" (the service name), NOT "localhost"
+$conn = new mysqli("db", "root", "", "recipe_database");
 
 
 if (!isset($_SESSION['user_id'])) {

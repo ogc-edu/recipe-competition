@@ -56,21 +56,18 @@ export default function LoginPage() {
 
     try {
       console.log("Sending login request...");
-      const response = await fetch(
-        "http://localhost/server/php/auth/login.php",
-        {
-          credentials: "include",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            action: "login",
-            email: email,
-            password: password,
-          }).toString(),
-        }
-      );
+      const response = await fetch("http://localhost/auth/login.php", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          action: "login",
+          email: email,
+          password: password,
+        }).toString(),
+      });
 
       const data = await response.json();
 
@@ -84,7 +81,7 @@ export default function LoginPage() {
       } else {
         console.log("Login failed:", data.message);
         setError(
-          data.message || "Invalid email or password. Please try again."
+          data.message || "Invalid email or password. Please try again.",
         );
       }
     } catch (error) {

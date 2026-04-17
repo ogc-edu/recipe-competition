@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 session_start();
-$conn = new mysqli("localhost", "root", "", "recipe_database");
+// Use "db" (the service name), NOT "localhost"
+$conn = new mysqli("db", "root", "", "recipe_database");
 
 // Handle check_admin action
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

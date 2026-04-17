@@ -41,21 +41,18 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "http://localhost/server/php/auth/register.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            action: "register",
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-          }).toString(),
-        }
-      );
+      const response = await fetch("http://localhost/auth/register.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          action: "register",
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }).toString(),
+      });
 
       const data = await response.json();
 

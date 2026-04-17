@@ -90,7 +90,7 @@ export default function RecipesPage() {
             body: JSON.stringify({
               action: "check_admin",
             }),
-          }
+          },
         );
         const data = await response.json();
         if (data.success) {
@@ -119,7 +119,7 @@ export default function RecipesPage() {
             "Content-Type": "application/json",
           },
           cache: "no-store",
-        }
+        },
       );
 
       if (response.ok) {
@@ -147,7 +147,7 @@ export default function RecipesPage() {
         setLoading(true);
       }
       const response = await fetch(
-        `http://localhost/server/php/recipes/api/recipes.php?page=${pageNum}&limit=${ITEMS_PER_PAGE}${
+        `http://localhost/recipes/api/recipes.php?page=${pageNum}&limit=${ITEMS_PER_PAGE}${
           searchQuery ? `&search=${searchQuery}` : ""
         }`,
         {
@@ -156,7 +156,7 @@ export default function RecipesPage() {
             "Content-Type": "application/json",
           },
           cache: "no-store",
-        }
+        },
       );
       if (response.ok) {
         const data = await response.json();
@@ -221,7 +221,7 @@ export default function RecipesPage() {
 
   const handleFavourite = async (
     recipeId: number,
-    currentFavourite: number
+    currentFavourite: number,
   ) => {
     try {
       console.log("Updating favourite:", { recipeId, currentFavourite });
@@ -237,7 +237,7 @@ export default function RecipesPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ favourite: newFavouriteValue }),
-        }
+        },
       );
 
       const data = await response.json();
@@ -253,8 +253,8 @@ export default function RecipesPage() {
           prev.map((recipe) =>
             recipe.recipe_id === recipeId
               ? { ...recipe, favourite: newFavouriteValue }
-              : recipe
-          )
+              : recipe,
+          ),
         );
 
         // If adding to favorites, add to favorite recipes list
@@ -273,7 +273,7 @@ export default function RecipesPage() {
       } else {
         console.error(
           "Failed to update favourite:",
-          data.error || "Unknown error"
+          data.error || "Unknown error",
         );
       }
     } catch (error) {
@@ -294,13 +294,13 @@ export default function RecipesPage() {
         {
           method: "DELETE",
           credentials: "include",
-        }
+        },
       );
 
       if (response.ok) {
         // Remove the deleted recipe from the state
         setRecipes((prev) =>
-          prev.filter((recipe) => recipe.recipe_id !== recipeId)
+          prev.filter((recipe) => recipe.recipe_id !== recipeId),
         );
 
         // Show success toast
@@ -544,7 +544,7 @@ export default function RecipesPage() {
                       handleFavourite(recipe.recipe_id, recipe.favourite);
                       // Remove from favorites list immediately for better UX
                       setFavoriteRecipes((prev) =>
-                        prev.filter((r) => r.recipe_id !== recipe.recipe_id)
+                        prev.filter((r) => r.recipe_id !== recipe.recipe_id),
                       );
                     }}
                     isAdmin={isAdmin}
@@ -570,7 +570,7 @@ export default function RecipesPage() {
                 .sort(
                   (a, b) =>
                     new Date(b.created_at).getTime() -
-                    new Date(a.created_at).getTime()
+                    new Date(a.created_at).getTime(),
                 )
                 .slice(0, 6)
                 .map((recipe) => (

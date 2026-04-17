@@ -9,7 +9,8 @@ header("Access-Control-Allow-Credentials: true"); // Allow credentials (cookies,
 header("Access-Control-Allow-Headers: Content-Type, Authorization, Cache-Control, Pragma");
 
 session_start();
-$conn = new mysqli("localhost", "root", "", "recipe_database");
+// Use "db" (the service name), NOT "localhost"
+$conn = new mysqli("db", "root", "", "recipe_database");
 
 $headers = getallheaders();
 

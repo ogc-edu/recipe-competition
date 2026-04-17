@@ -9,7 +9,17 @@ require_once "../users/User.php";
 
 
 session_start();
-$conn = new mysqli("localhost", "root", "", "recipe_database");
+// Use "db" (the service name), NOT "localhost"
+$conn = new mysqli("db", "root", "", "recipe_database");
+if ($conn->connect_error) {
+    http_response_code(500);
+    echo json_encode(['message' => 'Failed to connect to database: ' . $conn->connect_error]);
+    exit;
+}else{
+    http_response_code(200);
+    echo json_encode(['message' => 'Success to connect to database: ' . $conn->connect_error]);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'login') {
   $email = $_POST['email'];
   $password = $_POST['password'];
